@@ -38,11 +38,12 @@ public class Network {
         for(int i = 0; i < NETWORK_SIZE; i++){
             this.output[i] = new double[NETWORK_LAYER_SIZES[i]];
             this.biases[i] = new double[NETWORK_LAYER_SIZES[i]];
+            this.biases[i] = NetworkTools.createRandomArray(NETWORK_LAYER_SIZES[i], 0.3, 0.7);
 
             //Create weights array for each layer except the first
             if(i > 0){
                 weights[i] = new double[NETWORK_LAYER_SIZES[i]][NETWORK_LAYER_SIZES[i-1]];
-
+                weights[i] = NetworkTools.createRandomArray(NETWORK_LAYER_SIZES[i], NETWORK_LAYER_SIZES[i - 1], 0.3, 0.7);
             }
         }
 
