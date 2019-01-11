@@ -12,6 +12,10 @@ public class Network {
     //first index is layer, second is neuron
     private double[][] biases;
 
+    //TODO: Make comment
+    private double[][] error_signal;
+    private double[][] output_derivative;
+
     public final int[] NETWORK_LAYER_SIZES; //how many neurons on each layer
 
     public final int INPUT_SIZE; //number of neurons in input layer
@@ -32,12 +36,18 @@ public class Network {
         this.weights = new double[NETWORK_SIZE][][];
         this.biases = new double[NETWORK_SIZE][];
 
+        //TODO: Make comment
+        this.error_signal = new double[NETWORK_SIZE][];
+        this.output_derivative = new double[NETWORK_SIZE][];
 
         //Set the size of each layer
         //iterate through each layer
         for(int i = 0; i < NETWORK_SIZE; i++){
             this.output[i] = new double[NETWORK_LAYER_SIZES[i]];
-            this.biases[i] = new double[NETWORK_LAYER_SIZES[i]];
+            //TODO: Make comment
+            this.error_signal[i] = new double[NETWORK_LAYER_SIZES[i]];
+            this.output_derivative[i] = new double[NETWORK_LAYER_SIZES[i]];
+
             this.biases[i] = NetworkTools.createRandomArray(NETWORK_LAYER_SIZES[i], 0.3, 0.7);
 
             //Create weights array for each layer except the first
@@ -70,11 +80,70 @@ public class Network {
                 sum += biases[layer][neuron];
                 output[layer][neuron] = sigmoid(sum);
 
+
+                //Part of backpropagation
+                //TODO: Make comment
+                output_derivative[layer][neuron] = output[layer][neuron] * (1 - output[layer][neuron]);
+
             }
         }
         return output[NETWORK_SIZE - 1];
 
     }
+
+    //TODO: Refactor eta into learningRate
+    //TODO: Make comment
+    public void  train(double[] input, double[] target, double eta){
+        //Make sure input and output data are equal to amount needed
+        if(input.length != INPUT_SIZE || target.length != OUTPUT_SIZE){ return; }
+        calculate(input);
+        backPropError(target);
+        updateWeights(eta);
+    }
+
+    //Backpropagation
+    public void backPropError(double [] target){
+
+        //Loop though all output neurons
+        for(int neuron = 0; neuron < NETWORK_LAYER_SIZES[NETWORK_SIZE - 1]; neuron++){
+            //See graphics folder -> error_signal_equation.png
+            error_signal[NETWORK_SIZE - 1][neuron] = (output[NETWORK_SIZE - 1][neuron] - target[neuron])
+                    * output_derivative[NETWORK_SIZE - 1][neuron];
+        }
+
+         //Loop through hidden layers
+        for(int layer = NETWORK_SIZE - 2; layer > 0; layer--){
+            //Loop through neurons of hidden layers
+            for(int neuron = 0; neuron < NETWORK_LAYER_SIZES[layer]; neuron++){
+                //See second row of first equation in graphic
+                double sum = 0;
+                for(int nextNeuron = 0; nextNeuron < NETWORK_LAYER_SIZES[layer + 1]; nextNeuron++){
+                    //Increase sum by weight that connects current neuron to next neuron
+                    sum += weights[layer + 1][nextNeuron][neuron] * error_signal[layer + 1][nextNeuron];
+                }
+                this.error_signal[layer][neuron] = sum * output_derivative[layer][neuron];
+            }
+        }
+
+    }
+
+    //Update the weights
+    public void updateWeights(double eta){
+        for(int layer = 1; layer < NETWORK_SIZE; layer++){
+            for(int neuron = 0; neuron < NETWORK_LAYER_SIZES[layer]; neuron++){
+                for(int prevNeuron = 0; prevNeuron < NETWORK_LAYER_SIZES[layer - 1]; prevNeuron++){
+                    //Weights[layer][neuron][prevNeuron]
+                    //TODO: Refactor delta to changeInWeights
+                    double delta = -eta * output[layer - 1][prevNeuron] * error_signal[layer][neuron];
+                    weights[layer][neuron][prevNeuron] += delta;
+                }
+                //Delta for biases
+                double delta = -eta * 1 * error_signal[layer][neuron];
+                biases[layer][neuron] += delta;
+            }
+        }
+    }
+
 
     private double sigmoid(double x){
         return 1d / (1 + Math.exp(-x));
@@ -86,8 +155,15 @@ public class Network {
         Create a network
             new Network(4,2,3,1) will have 4 neurons in first layer, etc.
          */
-        Network network = new Network(4,2,3,4);
-        double[] output = network.calculate(0.2, 0.9, 0.3, 0.4);
+        Network network = new Network(4,1,3,4);
+
+        double[] input = new double[]{0.1, 0.5, 0.2, 0.9};
+        double[] target = new double[]{0, 1, 0, 0};
+
+        for(int i = 0; i < 100000; i++){
+            network.train(input, target, .3);
+        }
+        double[] output = network.calculate(input);
         System.out.println(Arrays.toString(output));
     }
 }
