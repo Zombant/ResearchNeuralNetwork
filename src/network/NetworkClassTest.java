@@ -3,13 +3,13 @@ package network;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Network {
+public class NetworkClassTest {
 
     //Create List of layers
     public Layer[] layersArray;
 
 
-    public Network(int... NUMBER_OF_NEURONS_IN_LAYER) {
+    public NetworkClassTest(int... NUMBER_OF_NEURONS_IN_LAYER) {
         //Set the number of layers
         layersArray = new Layer[NUMBER_OF_NEURONS_IN_LAYER.length];
 
@@ -82,7 +82,7 @@ public class Network {
             layersArray[layersArray.length - 1].neuronList[neuron].errorSignal = (layersArray[layersArray.length - 1].neuronList[neuron].neuronOutput - target[neuron]) * layersArray[layersArray.length - 1].neuronList[neuron].outputDerivative;
         }
 
-        //Loop through hidden layers
+         //Loop through hidden layers
         for(int layer = layersArray.length - 2; layer > 0; layer--){
             //Loop through neurons of hidden layers
             for(int neuron = 0; neuron < layersArray[layer].layerSize; neuron++){
@@ -122,23 +122,23 @@ public class Network {
     }
 
 
-    public static void main(String[] args){
-        /*
-        Create a network
-            new Network(4,2,3,1) will have 4 neurons in first layer, etc.
-         */
-        Network network = new Network(4,1,3,4);
-        //System.out.println(Arrays.toString(network.layersArray[0].neuronList[0].neuronWeights));
-        double[] input = new double[]{0.1, 0.5, 0.2, 0.9};
-        double[] target = new double[]{0, 1, 0, 0};
-        double[] input2 = new double[]{0.6, 0.2, 0.7, 0.4};
-        double[] target2 = new double[]{0, 0, 1, 0};
-
-        for(int i = 0; i < 100000; i++){
-            network.train(input, target, .3);
-            network.train(input2, target2, .3);
-        }
-        System.out.println(Arrays.toString(network.feedForward(input)));
-        System.out.println(Arrays.toString(network.feedForward(input2)));
-    }
+//    public static void main(String[] args){
+//        /*
+//        Create a network
+//            new Network(4,2,3,1) will have 4 neurons in first layer, etc.
+//         */
+//        NetworkClassTest network = new NetworkClassTest(4,1,3,4);
+//        //System.out.println(Arrays.toString(network.layersArray[0].neuronList[0].neuronWeights));
+//        double[] input = new double[]{0.1, 0.5, 0.2, 0.9};
+//        double[] target = new double[]{0, 1, 0, 0};
+//        double[] input2 = new double[]{0.6, 0.2, 0.7, 0.4};
+//        double[] target2 = new double[]{0, 0, 1, 0};
+//
+//        for(int i = 0; i < 100000; i++){
+//            network.train(input, target, .3);
+//            network.train(input2, target2, .3);
+//        }
+//        System.out.println(Arrays.toString(network.feedForward(input)));
+//        System.out.println(Arrays.toString(network.feedForward(input2)));
+//    }
 }
