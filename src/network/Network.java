@@ -1,7 +1,11 @@
 package network;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Network {
 
@@ -14,35 +18,37 @@ public class Network {
         layersArray = new Layer[NUMBER_OF_NEURONS_IN_LAYER.length];
 
         //Set the size of each layer
-        for(int i = 0; i < NUMBER_OF_NEURONS_IN_LAYER.length; i++){
+        for (int i = 0; i < NUMBER_OF_NEURONS_IN_LAYER.length; i++) {
             layersArray[i] = new Layer(NUMBER_OF_NEURONS_IN_LAYER[i]);
         }
 
         //iterate through each layer
-        for(int i = 1; i < layersArray.length; i++){
+        for (int i = 1; i < layersArray.length; i++) {
             layersArray[i].setAttributesOfNeurons(layersArray[i - 1]);
         }
 
     }
 
     //Feed Forward method
-    public double[] feedForward(double... input){
+    public double[] feedForward(double... input) {
         //Make sure that the input parameter matches the number of input neurons
-        if(input.length != this.layersArray[0].layerSize){ return null; }
+        if (input.length != this.layersArray[0].layerSize) {
+            return null;
+        }
 
         //Output of first layer is the same as the input
-        for(int i = 0; i < layersArray[0].neuronList.length; i++){
+        for (int i = 0; i < layersArray[0].neuronList.length; i++) {
             layersArray[0].neuronList[i].neuronOutput = input[i];
         }
 
 
         //for every layer, starting at 1 (because first layer is just the input
-        for(int layer = 1; layer < layersArray.length; layer++){
-            for(int neuron = 0; neuron < layersArray[layer].layerSize; neuron++){
+        for (int layer = 1; layer < layersArray.length; layer++) {
+            for (int neuron = 0; neuron < layersArray[layer].layerSize; neuron++) {
 
                 //Get the sum and enter it into the activation function
                 double sum = 0;
-                for(int prevNeuron = 0; prevNeuron < layersArray[layer - 1].layerSize; prevNeuron++){
+                for (int prevNeuron = 0; prevNeuron < layersArray[layer - 1].layerSize; prevNeuron++) {
                     //TODO: TEST THIS LINE
                     sum += layersArray[layer - 1].neuronList[prevNeuron].neuronOutput * layersArray[layer].neuronList[neuron].neuronWeights[prevNeuron];
                 }
@@ -57,7 +63,7 @@ public class Network {
         }
         //TODO: Create a loop that makes an array of output values
         double[] outputArray = new double[layersArray[layersArray.length - 1].layerSize];
-        for(int i = 0; i < outputArray.length; i++){
+        for (int i = 0; i < outputArray.length; i++) {
             outputArray[i] = layersArray[layersArray.length - 1].neuronList[i].neuronOutput;
         }
         return outputArray;
@@ -65,7 +71,7 @@ public class Network {
     }
 
     //TODO: Make comment
-    public void  train(double[] input, double[] target, double learningRate){
+    public void train(double[] input, double[] target, double learningRate) {
         //Make sure input and neuronOutputs data are equal to amount needed
         if(input.length != layersArray[0].layerSize || target.length != layersArray[layersArray.length - 1].layerSize){ return; }
         feedForward(input);
@@ -74,21 +80,21 @@ public class Network {
     }
 
     //Backpropagation
-    public void backPropagation(double [] target){
+    public void backPropagation(double[] target) {
 
         //Loop though all output neurons
-        for(int neuron = 0; neuron < layersArray[layersArray.length - 1].layerSize; neuron++){
+        for (int neuron = 0; neuron < layersArray[layersArray.length - 1].layerSize; neuron++) {
             //See graphics folder -> error_signal_equation.png
             layersArray[layersArray.length - 1].neuronList[neuron].errorSignal = (layersArray[layersArray.length - 1].neuronList[neuron].neuronOutput - target[neuron]) * layersArray[layersArray.length - 1].neuronList[neuron].outputDerivative;
         }
 
         //Loop through hidden layers
-        for(int layer = layersArray.length - 2; layer > 0; layer--){
+        for (int layer = layersArray.length - 2; layer > 0; layer--) {
             //Loop through neurons of hidden layers
-            for(int neuron = 0; neuron < layersArray[layer].layerSize; neuron++){
+            for (int neuron = 0; neuron < layersArray[layer].layerSize; neuron++) {
                 //See second row of first equation in graphic
                 double sum = 0;
-                for(int nextNeuron = 0; nextNeuron < layersArray[layer + 1].layerSize; nextNeuron++){
+                for (int nextNeuron = 0; nextNeuron < layersArray[layer + 1].layerSize; nextNeuron++) {
                     //Increase sum by weight that connects current neuron to next neuron
                     sum += layersArray[layer + 1].neuronList[nextNeuron].neuronWeights[neuron] * layersArray[layer + 1].neuronList[nextNeuron].errorSignal;
                 }
@@ -100,10 +106,10 @@ public class Network {
     }
 
     //Update the neuronWeights
-    public void updateWeights(double learningRate){
-        for(int layer = 1; layer < layersArray.length; layer++){
-            for(int neuron = 0; neuron < layersArray[layer].neuronList.length; neuron++){
-                for(int prevNeuron = 0; prevNeuron < layersArray[layer - 1].neuronList.length; prevNeuron++){
+    public void updateWeights(double learningRate) {
+        for (int layer = 1; layer < layersArray.length; layer++) {
+            for (int neuron = 0; neuron < layersArray[layer].neuronList.length; neuron++) {
+                for (int prevNeuron = 0; prevNeuron < layersArray[layer - 1].neuronList.length; prevNeuron++) {
                     //Weights[layer][neuron][prevNeuron]
                     //TODO: DEBUG LINE
                     double changeInWeights = -learningRate * layersArray[layer - 1].neuronList[prevNeuron].neuronOutput * layersArray[layer].neuronList[neuron].errorSignal;
@@ -121,24 +127,48 @@ public class Network {
         return 1d / (1 + Math.exp(-x));
     }
 
-
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        //Have entire console saved to text file
+        PrintStream out = null;
+        try {
+            out = new PrintStream(new FileOutputStream("output.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.setOut(out);
         /*
         Create a network
             new Network(4,2,3,1) will have 4 neurons in first layer, etc.
          */
-        Network network = new Network(4,1,3,4);
-        //System.out.println(Arrays.toString(network.layersArray[0].neuronList[0].neuronWeights));
-        double[] input = new double[]{0.1, 0.5, 0.2, 0.9};
-        double[] target = new double[]{0, 1, 0, 0};
-        double[] input2 = new double[]{0.6, 0.2, 0.7, 0.4};
-        double[] target2 = new double[]{0, 0, 1, 0};
+        Network network = new Network(1, 10, 1);
 
-        for(int i = 0; i < 100000; i++){
-            network.train(input, target, .3);
-            network.train(input2, target2, .3);
+        //Load the CSV
+        List<List<String>> array = new ArrayList<>();
+        array = CSVReader.readCSV("InputData/Data.csv");
+        for(int p = 0; p < 10; p++) {
+            for (int i = 0; i < 1000000; i++) {
+                for (int j = 1; j < array.size(); j++) {
+                    double[] input = new double[]{Double.valueOf(array.get(j).get(0)) / 1.0};
+                    double[] target = new double[]{Double.valueOf(array.get(j).get(1)) / 10.0};
+                    //TODO: Make Network a class that will be used by other classes' main methods, for example put learning rate in the constructor and remove main method
+                    network.train(input, target, .3);
+                    System.out.println(Arrays.toString(input) + ",   " + Arrays.toString(target));
+                    System.out.println(network.layersArray[network.layersArray.length - 1].neuronList[0].neuronOutput);
+
+                }
+                System.out.println("---------------------NEXT ITERATION---------------------");
+            }
+
+
         }
-        System.out.println(Arrays.toString(network.feedForward(input)));
-        System.out.println(Arrays.toString(network.feedForward(input2)));
+
+
+//        for (int k = 1; k < array.size(); k++) {
+//            System.out.println(Arrays.toString(network.feedForward(Double.parseDouble(array.get(k).get(0)))));
+//            System.out.println(array.get(k).toString());
+//            System.out.println(network.layersArray[network.layersArray.length - 1].neuronList[0].neuronOutput);
+//
+//        }
+//        System.out.println(Arrays.toString(network.feedForward(425)));
     }
 }
