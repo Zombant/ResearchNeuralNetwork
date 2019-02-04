@@ -129,13 +129,13 @@ public class Network {
 
     public static void main(String[] args) {
         //Have entire console saved to text file
-        PrintStream out = null;
-        try {
-            out = new PrintStream(new FileOutputStream("output.txt"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        System.setOut(out);
+//        PrintStream out = null;
+//        try {
+//            out = new PrintStream(new FileOutputStream("output.txt"));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        System.setOut(out);
         /*
         Create a network
             new Network(4,2,3,1) will have 4 neurons in first layer, etc.
@@ -144,19 +144,20 @@ public class Network {
 
         //Load the CSV
         List<List<String>> array = new ArrayList<>();
-        array = CSVReader.readCSV("InputData/Data.csv");
+        array = CSVReader.readCSV("data/Data.csv");
         for(int p = 0; p < 10; p++) {
             for (int i = 0; i < 1000000; i++) {
                 for (int j = 1; j < array.size(); j++) {
-                    double[] input = new double[]{Double.valueOf(array.get(j).get(0)) / 1.0};
-                    double[] target = new double[]{Double.valueOf(array.get(j).get(1)) / 10.0};
+                    double[] input = new double[]{Double.valueOf(array.get(j).get(1)) / 1.0};
+                    double[] target = new double[]{Double.valueOf(array.get(j).get(0)) / 1000.0};
                     //TODO: Make Network a class that will be used by other classes' main methods, for example put learning rate in the constructor and remove main method
                     network.train(input, target, .3);
+
                     System.out.println(Arrays.toString(input) + ",   " + Arrays.toString(target));
                     System.out.println(network.layersArray[network.layersArray.length - 1].neuronList[0].neuronOutput);
 
                 }
-                System.out.println("---------------------NEXT ITERATION---------------------");
+                System.out.println("---------------------NEXT ITERATION (p= " + p +")(i= " + i + ")---------------------");
             }
 
 
