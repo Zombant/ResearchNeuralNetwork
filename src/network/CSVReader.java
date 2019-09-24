@@ -15,7 +15,7 @@ public class CSVReader {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = bufferedReader.readLine()) != null){
-                String[] values = line.split(",");
+                String[] values = line.split(";");
                 result.add(Arrays.asList(values));
             }
         } catch (IOException e) {
@@ -24,5 +24,7 @@ public class CSVReader {
 
         return result;
     }
+
+
 
 }

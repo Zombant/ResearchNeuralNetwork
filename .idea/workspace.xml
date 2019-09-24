@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a811fc27-ef35-4b63-8985-cbecf8e0f2f7" name="Default Changelist" comment="Switch the inputs and target values, created results2">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a811fc27-ef35-4b63-8985-cbecf8e0f2f7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/data/divorce.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/network/GenCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ResearchNetwork/network/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ResearchNetwork/network/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network/CSVReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/CSVReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/network/Network.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +27,44 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/network/Network.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="144" column="22" lean-forward="true" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
+            <state relative-caret-position="980">
+              <caret line="188" column="10" lean-forward="true" selection-start-line="188" selection-start-column="10" selection-end-line="188" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#Network#0;class#Network#0" />
+                <element signature="method#backPropagation#0;class#Network#0" />
+                <element signature="method#updateWeights#0;class#Network#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/network/Neuron.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/network/CSVReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/divorce.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -62,7 +97,6 @@
         <option value="$PROJECT_DIR$/src/network/Layer.java" />
         <option value="$PROJECT_DIR$/src/network/NetworkClassTest.java" />
         <option value="$PROJECT_DIR$/src/network/NetworkTwo.java" />
-        <option value="$PROJECT_DIR$/src/network/CSVReader.java" />
         <option value="$PROJECT_DIR$/src/network/CSVWriter.java" />
         <option value="$PROJECT_DIR$/src/com/jlmd/simpleneuralnetwork/example/CSVReader.java" />
         <option value="$PROJECT_DIR$/src/com/jlmd/simpleneuralnetwork/example/Main.java" />
@@ -70,15 +104,18 @@
         <option value="$PROJECT_DIR$/InputData/Data.csv" />
         <option value="$PROJECT_DIR$/data/results2/results.txt" />
         <option value="$PROJECT_DIR$/src/network/Neuron.java" />
-        <option value="$PROJECT_DIR$/src/network/Network.java" />
         <option value="$PROJECT_DIR$/src/network/GenCode.java" />
+        <option value="$PROJECT_DIR$/data/divorce.csv" />
+        <option value="$PROJECT_DIR$/src/network/CSVReader.java" />
+        <option value="$PROJECT_DIR$/src/network/Network.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="953" />
-    <option name="width" value="974" />
-    <option name="height" value="1047" />
+    <option name="x" value="952" />
+    <option name="y" value="-8" />
+    <option name="width" value="976" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -145,16 +182,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Anthony\IdeaProjects\ResearchNetwork\src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Personal Stuff\Documents\IntelliJ Idea Projects\ResearchNetwork\data" />
+      <recent name="C:\Users\Anthony\IdeaProjects\ResearchNetwork\InputData" />
+      <recent name="C:\Users\Anthony\IdeaProjects\ResearchNetwork\src\network" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.jlmd.simpleneuralnetwork.example" />
       <recent name="network" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Anthony\IdeaProjects\ResearchNetwork\InputData" />
-      <recent name="C:\Users\Anthony\IdeaProjects\ResearchNetwork\src\network" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Anthony\IdeaProjects\ResearchNetwork\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -315,14 +353,21 @@
       <option name="project" value="LOCAL" />
       <updated>1549243394085</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Cleaned up commented code, remove GenCode file">
+      <created>1569288827936</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1569288827936</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15511727" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -331,7 +376,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.8472373" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49733475" weight="0.38244852" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869988" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -339,7 +384,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5026652" side_tool="true" weight="0.32502708" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32822758" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32603937" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32502708" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -427,7 +472,8 @@
     <MESSAGE value="Created the Neuron and Layer classes instead of storing the data in arrays. NetworkTools is now obsolete. NetworkClassTest was temporary and is not being used." />
     <MESSAGE value="Created the CSVReader class to read csv files into an List object. Main method now trains with the data read from the csv file ten million times and writes the output to a text file." />
     <MESSAGE value="Switch the inputs and target values, created results2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switch the inputs and target values, created results2" />
+    <MESSAGE value="Cleaned up commented code, remove GenCode file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up commented code, remove GenCode file" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/antpicci/Main.java" />
@@ -442,13 +488,6 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/jshell/jshell_console.snippet" />
     <entry file="file://$PROJECT_DIR$/src/network/NetworkClassTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/network/NetworkTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/jre/lib/rt.jar!/sun/misc/FloatingDecimal.class" />
     <entry file="file://$PROJECT_DIR$/src/com/jlmd/simpleneuralnetwork/example/CSVReader.java" />
     <entry file="file://$PROJECT_DIR$/src/com/jlmd/simpleneuralnetwork/neuralnetwork/Learner.java" />
@@ -461,13 +500,6 @@
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/PrintStream.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/BufferedReader.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_111/src.zip!/java/io/InputStreamReader.java" />
-    <entry file="file://$PROJECT_DIR$/src/network/Layer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output.txt" />
     <entry file="file://$PROJECT_DIR$/src/network/NetworkTwo.java" />
     <entry file="file://$PROJECT_DIR$/InputData/results.txt" />
@@ -491,23 +523,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="453">
           <caret line="154" lean-forward="true" selection-start-line="154" selection-end-line="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/CSVReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/Neuron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -535,12 +550,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/network/Network.java">
+    <entry file="jar://D:/Program Files/Java/jdk-12.0.1/lib/src.zip!/java.base/java/util/function/ToDoubleFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="144" column="22" lean-forward="true" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
+        <state relative-caret-position="408">
+          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/CSVReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/divorce.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/NetworkTools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/Layer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/Neuron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/network/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="980">
+          <caret line="188" column="10" lean-forward="true" selection-start-line="188" selection-start-column="10" selection-end-line="188" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#Network#0;class#Network#0" />
+            <element signature="method#backPropagation#0;class#Network#0" />
+            <element signature="method#updateWeights#0;class#Network#0" />
           </folding>
         </state>
       </provider>

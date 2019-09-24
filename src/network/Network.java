@@ -132,16 +132,44 @@ public class Network {
         Create a network
             new Network(4,2,3,1) will have 4 neurons in first layer, etc.
          */
-        Network network = new Network(1, 10, 1);
+        Network network = new Network(54, 10, 1);
 
-        //Load the CSV
-        List<List<String>> array = new ArrayList<>();
-        array = CSVReader.readCSV("data/Data.csv");
+        List<List<String>> arrayString = new ArrayList<>();
+        arrayString = CSVReader.readCSV("data/divorce.csv");
+
+        //Converts array of strings to 2 Lists of Doubles
+        List<List<Double>> inputList = new ArrayList<>();
+        for(int i = 0; i < arrayString.size(); i++){
+            List<Double> tempList = new ArrayList<>();
+            for(int j = 0; j < arrayString.get(i).size() -1; j++){
+                tempList.add(Double.valueOf(arrayString.get(i).get(j)));
+            }
+            inputList.add(tempList);
+        }
+        List<List<Double>> targetList = new ArrayList<>();
+        for(int i = 0; i < arrayString.size(); i++){
+            List<Double> tempList = new ArrayList<>();
+            tempList.add(Double.valueOf(arrayString.get(i).get(arrayString.get(i).size() - 1)));
+            targetList.add(tempList);
+        }
+        //System.out.println(targetList.size());
+
+
         for(int p = 0; p < 10; p++) {
             for (int i = 0; i < 1000000; i++) {
-                for (int j = 1; j < array.size(); j++) {
-                    double[] input = new double[]{Double.valueOf(array.get(j).get(1)) / 1.0};
-                    double[] target = new double[]{Double.valueOf(array.get(j).get(0)) / 1000.0};
+                for (int j = 1; j < inputList.size(); j++) {
+                    Double[] inputOneDimension = inputList.get(j).toArray(new Double[inputList.get(j).size()]);
+                    Double[] targetOneDimension = targetList.get(j).toArray(new Double[targetList.get(j).size()]);
+                    double[] input = new double[inputOneDimension.length];
+                    double[] target = new double[targetOneDimension.length];
+                    for(int r = 0; r < inputOneDimension.length; r++){
+                        input[r] = inputOneDimension[r];
+                    }
+                    for(int r = 0; r < targetOneDimension.length; r++){
+                        target[r] = targetOneDimension[r];
+                    }
+                    //System.out.println(Arrays.toString(target));
+
                     //TODO: Make Network a class that will be used by other classes' main methods, for example put learning rate in the constructor and remove main method
                     network.train(input, target, .3);
 
@@ -154,6 +182,30 @@ public class Network {
 
 
         }
+
+
+        //For Research Project
+//        Network network = new Network(1, 10, 1);
+        //Load the CSV
+//        List<List<String>> array = new ArrayList<>();
+//        array = CSVReader.readCSV("data/Data.csv");
+//        for(int p = 0; p < 10; p++) {
+//            for (int i = 0; i < 1000000; i++) {
+//                for (int j = 1; j < array.size(); j++) {
+//                    double[] input = new double[]{Double.valueOf(array.get(j).get(1)) / 1.0};
+//                    double[] target = new double[]{Double.valueOf(array.get(j).get(0)) / 1000.0};
+//                    //TODO: Make Network a class that will be used by other classes' main methods, for example put learning rate in the constructor and remove main method
+//                    network.train(input, target, .3);
+//
+//                    System.out.println(Arrays.toString(input) + ",   " + Arrays.toString(target));
+//                    System.out.println(network.layersArray[network.layersArray.length - 1].neuronList[0].neuronOutput);
+//
+//                }
+//                System.out.println("---------------------NEXT ITERATION (p= " + p +")(i= " + i + ")---------------------");
+//            }
+//
+//
+//        }
 
     }
 }
