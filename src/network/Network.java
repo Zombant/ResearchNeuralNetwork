@@ -128,14 +128,6 @@ public class Network {
     }
 
     public static void main(String[] args) {
-        //Have entire console saved to text file
-//        PrintStream out = null;
-//        try {
-//            out = new PrintStream(new FileOutputStream("output.txt"));
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        System.setOut(out);
         /*
         Create a network
             new Network(4,2,3,1) will have 4 neurons in first layer, etc.
@@ -163,13 +155,5 @@ public class Network {
 
         }
 
-
-//        for (int k = 1; k < array.size(); k++) {
-//            System.out.println(Arrays.toString(network.feedForward(Double.parseDouble(array.get(k).get(0)))));
-//            System.out.println(array.get(k).toString());
-//            System.out.println(network.layersArray[network.layersArray.length - 1].neuronList[0].neuronOutput);
-//
-//        }
-//        System.out.println(Arrays.toString(network.feedForward(425)));
     }
 }
